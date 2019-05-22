@@ -28,6 +28,8 @@ module.exports = function(RED) {
                         text: msg.payload.toString()
 		};
             }
+	    if(Array.isArray(msg.attachments))
+		    data.attachments = msg.attachments;
             sgMail.send(data, function(err) {
                 if (err) {
                     node.error(err.toString(), msg);
